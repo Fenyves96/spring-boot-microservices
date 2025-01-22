@@ -1,5 +1,6 @@
 package com.in28minutes.microservices.currency_conversion_service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +12,9 @@ import java.util.Currency;
 import java.util.HashMap;
 
 @RestController
+@RequiredArgsConstructor
 public class CurrencyConversionController {
+	private final CurrencyExchangeProxy proxy;
 	@GetMapping("currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversion(
 			@PathVariable String from,
@@ -24,6 +27,18 @@ public class CurrencyConversionController {
 				"http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversion.class, uriVariables);
 
 		CurrencyConversion currencyConversion = responseEntity.getBody();
+		return new CurrencyConversion(
+				currencyConversion.getId(),from, to, currencyConversion.getConversionMultiple(), quantity,currencyConversion.getConversionMultiple().multiply(quantity), currencyConversion.getEnvironment());
+	}
+
+	@GetMapping("currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
+	public CurrencyConversion calculateCurrencyConversionFeign(
+			@PathVariable String from,
+			@PathVariable String to,
+			@PathVariable BigDecimal quantity) {
+
+
+		CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
 		return new CurrencyConversion(
 				currencyConversion.getId(),from, to, currencyConversion.getConversionMultiple(), quantity,currencyConversion.getConversionMultiple().multiply(quantity), currencyConversion.getEnvironment());
 	}
