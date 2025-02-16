@@ -38,5 +38,8 @@ http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
 ###
 http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
-###
+### add header example
 http://localhost:8765/get
+
+### circuit breaker in currecny-exchange-service
+http://localhost:8000/sample-api
