@@ -28,7 +28,7 @@ http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/
 
 
 
-Custom Routes
+Custom Routes with api gateway
 ###
 http://localhost:8765/currency-exchange/from/USD/to/INR
 ###
