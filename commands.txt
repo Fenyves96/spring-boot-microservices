@@ -2,6 +2,15 @@
 ## there are cluster, Nodes, Pods 
 ### pods are the smallest deployable units, there usually contain only one container
 ### service: expose pods to the outside World with a stable ip address
+#### ensures that the external World wont notice of one the pods is down
+#### three type: 
+	cluster ip: this ip  is only availabe within the cluster
+	Loadbalancer: expose service externally using a cloud provider's load balancer
+		(when you want to create inividzal load balancer for each microservice)
+	NodePort: exposes service on each node ip at a static sport
+#### how does kubernetes makes environment variables:
+#### if your service name is some-service -> SOME_SERVICE_SERVICE_HOST
+#### there is automatically created environment variable which is HOSTNAME and it is the id of the current pod
 
 commands:
 #select project to manage
