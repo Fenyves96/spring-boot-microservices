@@ -3,9 +3,14 @@ http://localhost:8000/currency-exchange/from/USD/to/INR
 
 ###Currency Conversion Service
 http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
-### asd
-http://35.223.40.231:8000/actuator/health/
-### asd
-http://35.223.40.231:8000/actuator/health/liveness
-### asd
-http://35.223.40.231:8000/actuator/health/readiness
+### healtchecks
+http://34.44.72.190:8000/actuator/health/
+###
+http://34.44.72.190:8000/actuator/health/liveness
+###
+http://34.44.72.190:8000/actuator/health/readiness
+
+###currency-exchange-service
+http://34.29.90.166:8100/actuator/health/readiness
+### communication between them
+http://34.29.90.166:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
